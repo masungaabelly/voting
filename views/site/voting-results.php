@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\helpers\Urli;
 
 ?>
 
@@ -23,7 +22,7 @@ use yii\helpers\Urli;
                             style="width: auto; height: auto;" /></td>
                     <td><?= $candidate['candidate_firstname'] . ' ' . $candidate['candidate_lastname'] ?></td>
                     <td>
-                        <?= $candidate['vote_count'] ?>
+                       <?= $candidate['vote_count'] ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -31,3 +30,4 @@ use yii\helpers\Urli;
         </tbody>
     </table>
 </div>
+
