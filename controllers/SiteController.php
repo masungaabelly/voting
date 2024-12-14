@@ -22,20 +22,20 @@ class SiteController extends Controller
      */
     // In your SiteController
 
-public function behaviors()
-{
-    return [
-   
-        'verbs' => [
-            'class' => VerbFilter::class,
-            'actions' => [
-                'logout' => ['post'],
-            ],
-        ],
-    ];
-}
+    public function behaviors()
+    {
+        return [
 
-    
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+
 
     /**
      * {@inheritdoc}
@@ -196,7 +196,7 @@ public function behaviors()
         ]);
 
         $candidates = $db->createCommand('SELECT * FROM candidate')->queryAll();
-        return $this->render('showcandidates',['candidates' => $candidates]);
+        return $this->render('showcandidates', ['candidates' => $candidates]);
     }
 
 
@@ -219,7 +219,7 @@ public function behaviors()
 
         // You can redirect the user to the home page
         return $this->render('vote', ['candidates' => $candidates]);
-        
+
     }
 
     public function actionVoteAction($candidateId)
@@ -243,7 +243,8 @@ public function behaviors()
     }
 
 
-    public function actionVotingResults(){
+    public function actionVotingResults()
+    {
         $db = new Connection([
             'dsn' => 'mysql:host=localhost;dbname=voting2',
             'username' => 'root',
@@ -251,8 +252,34 @@ public function behaviors()
         ]);
 
         $candidates = $db->createCommand('SELECT * FROM candidate')->queryAll();
-        return $this->render('voting-results',['candidates' => $candidates]);
+        return $this->render('voting-results', ['candidates' => $candidates]);
     }
+    public function actionChatbot()
+    {
+        if (Yii::$app->request->isPost) {
+            $question = Yii::$app->request->post('question');
+            $response = $this->generateResponse($question);
+            return $this->asJson(['response' => $response]);
+        }
+
+        return $this->render('chatbot');
+    }
+
+    private function generateResponse($question)
+    {
+        // Basic response logic
+        $question = strtolower($question);
+        if (strpos($question, 'how to vote') !== false) {
+            return 'To vote, please visit the voting page and follow the instructions.';
+        } elseif (strpos($question, 'voting time') !== false) {
+            return 'Voting is open from 9 AM to 5 PM on the voting day.';
+        } elseif (strpos($question, 'requirements to vote') !== false) {
+            return 'You need a valid ID and voter registration to vote.';
+        } else {
+            return 'Sorry, I did not understand your question. Please try asking something else.';
+        }
+    }
+
 
 
 

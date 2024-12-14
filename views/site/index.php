@@ -4,7 +4,7 @@
 
 use yii\helpers\Url;
 
-$this->title = 'My Yii Application';
+$this->title = 'ONLINE VOTING SYSTEM';
 ?>
 <div class="site-index">
 
@@ -15,7 +15,7 @@ $this->title = 'My Yii Application';
         <p class="lead">Jump right into action and vote for the leader you please</p>
 
 
-        <p><a class="btn btn-success" href="<?= Url::to(['/site/vote'])?>">Vote &raquo;</a></p>
+        <p><a class="btn btn-success" href="<?= Url::to(['/site/vote']) ?>">Vote &raquo;</a></p>
     </div>
 
     <div class="body-content">
@@ -24,11 +24,11 @@ $this->title = 'My Yii Application';
             <div class=" mb-3">
                 <h2>Cast Your Vote: Shape the Future</h2>
                 <h2>Your Voice, Your Vote: Make it Count!</h2>
-            
+
 
             </div>
-           
-           
+
+
         </div>
 
     </div>

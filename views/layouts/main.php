@@ -90,7 +90,7 @@ NavBar::end();
         </div>
     </div>
 </footer>
-
+<li><?= Html::a('Chatbot', ['/site/chatbot']) ?></li>
 <?php $this->endBody() ?>
 </body>
 </html>
